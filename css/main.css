@@ -2440,3 +2440,16 @@ a.more-link:hover,
 #nprogress .spinner-icon {
   	border-top-color: #FFFC00; border-left-color: #FFFC00;
 	}
+
+
+/* Prevent home section from scrolling internally */
+#home.pt-page {
+    overflow: hidden !important;
+}
+
+/* Maintain background coverage */
+#home.has-bg-img {
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
