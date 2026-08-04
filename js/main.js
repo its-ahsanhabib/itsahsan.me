@@ -5,7 +5,82 @@ var classicLayout = false;
 var portfolioKeyword;
 var mapCanvas;
 
+function setupDynamicPortfolioNav() {
+    // console.log("=== Debugging Portfolio Nav Setup ===");
 
+    // 1. Get current page filename
+    var currentPath = window.location.pathname.split('/').pop();
+    
+    // If opening root index page, check location hash or default
+    if (!currentPath || currentPath === 'index.html') {
+        currentPath = window.location.hash.replace('#/', '');
+    }
+
+    // console.log("Current detected path/filename:", currentPath);
+
+    // 2. Fetch portfolio.json
+    $.getJSON('portfolio.json')
+        .done(function(data) {
+            // console.log("Successfully fetched portfolio.json. Items loaded:", data.length);
+
+            if (!data || !data.length) {
+                // console.warn("portfolio.json is empty or invalid format.");
+                return;
+            }
+
+            // Find index of current page item
+            var currentIndex = data.findIndex(function(item) {
+                // Loose match: checks if link contains the current filename
+                return item.link && (item.link === currentPath || currentPath.indexOf(item.link) !== -1);
+            });
+
+            // console.log("Matched index in portfolio.json:", currentIndex);
+
+            // Fallback if not found
+            if (currentIndex === -1) {
+                // console.warn("Could not match '" + currentPath + "' inside portfolio.json. Defaulting to index 0.");
+                currentIndex = 0;
+            }
+
+            // Calculate Prev/Next (with wrap-around)
+            var prevIndex = (currentIndex - 1 + data.length) % data.length;
+            var nextIndex = (currentIndex + 1) % data.length;
+
+            var prevLink = data[prevIndex].link;
+            var nextLink = data[nextIndex].link;
+
+            // console.log("Prev Target -> Index:", prevIndex, "| Link:", prevLink, "| Title:", data[prevIndex].title);
+            // console.log("Next Target -> Index:", nextIndex, "| Link:", nextLink, "| Title:", data[nextIndex].title);
+
+            // Update DOM
+            var $navs = $('.portfolio-nav');
+            // console.log("Found .portfolio-nav containers on page:", $navs.length);
+
+            $navs.each(function(i, el) {
+                $(el).find('a.prev').attr('href', prevLink).attr('title', data[prevIndex].title);
+                $(el).find('a.next').attr('href', nextLink).attr('title', data[nextIndex].title);
+                $(el).find('a.back').attr('href', 'index.html#/portfolio');
+            });
+
+            // console.log("=== Portfolio Nav Updated Successfully ===");
+        })
+        .fail(function(jqxhr, textStatus, error) {
+            // console.error("Failed to load portfolio.json! Error status:", textStatus, "| Error details:", error);
+        });
+}
+
+// Trigger handlers
+$(document).ready(function() {
+    setupDynamicPortfolioNav();
+});
+
+// Re-trigger if template loads items dynamically via AJAX
+$(document).ajaxComplete(function(event, xhr, settings) {
+    if (settings.url && settings.url.indexOf('portfolio-item') !== -1) {
+        // console.log("AJAX page swap detected. Re-running navigation setup...");
+        setupDynamicPortfolioNav();
+    }
+});
 
 // Smart Section Navigation: Instant home skip + robust edge detection for content sections
 (function() {
