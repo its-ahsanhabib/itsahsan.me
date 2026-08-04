@@ -1,0 +1,26 @@
+[
+  {
+    "id": "portfolio-item-01",
+    "title": "Low Cost Refreshable Braille Display",
+    "categoryText": "This is a Refreshable braille display...",
+    "categories": ["Electronics", "Embeded_System", "Robotics_Mechatronics"],
+    "image": "portfolio/images/braile_cover.jpg",
+    "link": "portfolio-item-01.html"
+  },
+  {
+    "id": "portfolio-item-02",
+    "title": "Pick and Place Machine",
+    "categoryText": "This is an IoT device for paper delivery...",
+    "categories": ["Electronics", "Embeded_System", "Robotics_Mechatronics", "3D"],
+    "image": "portfolio/images/pick place.jpg",
+    "link": "portfolio-item-02.html"
+  },
+  {
+    "id": "portfolio-item-03",
+    "title": "Wireless (Ultrasonic) Power Transfer",
+    "categoryText": "Long Range power Transfer for IoT devices",
+    "categories": ["Electronics", "iOT", "Power"],
+    "image": "portfolio/images/ultrasonic power.jpg",
+    "link": "portfolio-item-03.html"
+  }
+]

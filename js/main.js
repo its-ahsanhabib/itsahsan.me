@@ -85,6 +85,45 @@ var mapCanvas;
 })();
 
 
+function loadPortfolioItems() {
+    $.getJSON('portfolio.json', function(data) {
+        var $grid = $('#portfolio-grid');
+        $grid.empty();
+
+        $.each(data, function(index, item) {
+            var categoryClasses = item.categories.join(' ');
+            
+            var itemHtml = `
+                <div class="media-cell ${categoryClasses} hentry">
+                    <div class="media-box">
+                        <img src="${item.image}" alt="${item.title}">
+                        <div class="mask"></div>
+                        <a href="${item.link}" class="ajax" title="${item.title}"></a>
+                    </div>
+                    <div class="media-cell-desc">
+                        <h3>${item.title}</h3>
+                        <p class="category">${item.categoryText}</p>
+                    </div>
+                </div>
+            `;
+            $grid.append(itemHtml);
+        });
+
+        // Re-initialize or reload Isotope layout once images/DOM are ready
+        if ($.fn.isotope) {
+            $grid.imagesLoaded(function() {
+                $grid.isotope('reloadItems').isotope({ ready: true });
+            });
+        }
+    });
+}
+
+// Call on document ready
+$(document).ready(function() {
+    loadPortfolioItems();
+});
+
+
 (function($) { "use strict"; 
 	
 	
