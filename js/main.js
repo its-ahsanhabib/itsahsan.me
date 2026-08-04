@@ -179,10 +179,24 @@ var mapCanvas;
 		*/
 		// When the window has finished loading create our google map below
 			
-		mapCanvas = $('#map-canvas');
-		
-		if(mapCanvas.length) {	
-			google.maps.event.addDomListener(window, 'load', initializeMap);
+		// Replace the old google.maps snippet with this:
+		var mapContainer = document.getElementById('map-canvas');
+
+		if (mapContainer && typeof L !== 'undefined') {
+			var lat = mapContainer.getAttribute('data-latitude') || 23.810331;
+			var lng = mapContainer.getAttribute('data-longitude') || 90.412521;
+			var zoom = parseInt(mapContainer.getAttribute('data-zoom')) || 13;
+
+			var map = L.map('map-canvas').setView([lat, lng], zoom);
+
+			L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+				attribution: '&copy; OpenStreetMap contributors',
+				opacity: 0.7, // Set opacity between 0.0 and 1.0
+				subdomains: 'abcd',
+				maxZoom: 20,
+			}).addTo(map);
+
+			L.marker([lat, lng]).addTo(map);
 		}
 		// ------------------------------
 				
