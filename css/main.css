@@ -2453,3 +2453,16 @@ a.more-link:hover,
     background-position: center center !important;
     background-repeat: no-repeat !important;
 }
+
+/* Enable internal scroll for content sections */
+.pt-page {
+    overflow-y: auto !important;
+    max-height: 100vh !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure current active section receives wheel and touch events */
+.pt-page-current {
+    z-index: 10 !important;
+    pointer-events: auto !important;
+}

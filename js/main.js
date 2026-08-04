@@ -6,6 +6,85 @@ var portfolioKeyword;
 var mapCanvas;
 
 
+
+// Smart Section Navigation: Instant home skip + robust edge detection for content sections
+(function() {
+    var sections = ['#/home', '#/about', '#/resume', '#/portfolio', '#/blog', '#/contact'];
+    var isTransitioning = false;
+
+    $(window).on('wheel deltaX deltaY', function(event) {
+        if (isTransitioning) return;
+
+        var delta = event.originalEvent.deltaY;
+        var currentHash = window.location.hash || '#/home';
+        
+        if (currentHash.indexOf('?') !== -1) {
+            currentHash = currentHash.split('?')[0];
+        }
+
+        var currentIndex = sections.indexOf(currentHash);
+        if (currentIndex === -1) currentIndex = 0;
+
+        // 1. HOME SECTION: Jump immediately on scroll down
+        if (currentHash === '#/home' || currentIndex === 0) {
+            if (delta > 20) {
+                triggerTransition(sections[1]); // Move to #/about
+            }
+            return;
+        }
+
+        // 2. CONTENT SECTIONS (#/about, #/resume, etc.)
+        // Get the active page section element
+        var $activePage = $('.pt-page-current');
+        if (!$activePage.length) {
+            $activePage = $(currentHash);
+        }
+
+        var activeEl = $activePage[0];
+
+        if (!activeEl) return;
+
+        // Check scroll metrics of the section container AND the inner content
+        var scrollTop = activeEl.scrollTop;
+        var scrollHeight = activeEl.scrollHeight;
+        var clientHeight = activeEl.clientHeight;
+
+        // Fallback check in case inner child div (.content) holds the scrollbar
+        var $content = $activePage.find('.content');
+        if ($content.length && scrollHeight <= clientHeight) {
+            scrollTop = $content[0].scrollTop;
+            scrollHeight = $content[0].scrollHeight;
+            clientHeight = $content[0].clientHeight;
+        }
+
+        // Determine if section is scrolled to the edges (with a 20px buffer zone)
+        var isAtBottom = (scrollHeight - scrollTop - clientHeight) <= 20 || (scrollHeight <= clientHeight + 10);
+        var isAtTop = scrollTop <= 20;
+
+        // Scroll Down -> Jump to Next Section
+        if (delta > 25 && isAtBottom && currentIndex < sections.length - 1) {
+            triggerTransition(sections[currentIndex + 1]);
+        } 
+        // Scroll Up -> Jump to Previous Section
+        else if (delta < -25 && isAtTop && currentIndex > 0) {
+            triggerTransition(sections[currentIndex - 1]);
+        }
+    });
+
+    function triggerTransition(targetHash) {
+        isTransitioning = true;
+        
+        // Update hash for jquery.address navigation
+        window.location.hash = targetHash;
+
+        // Cooldown timer matching template transition speed
+        setTimeout(function() {
+            isTransitioning = false;
+        }, 900);
+    }
+})();
+
+
 (function($) { "use strict"; 
 	
 	
