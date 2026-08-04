@@ -5,6 +5,23 @@ var classicLayout = false;
 var portfolioKeyword;
 var mapCanvas;
 
+
+function loadGlobalHeaderFooter() {
+    // Inject header.html into the placeholder
+    if ($('#global-header').length) {
+        $('#global-header').load('portfolio_header.html', function() {
+            // Re-initialize menu toggles or events if needed
+            if (typeof $.fn.uniform !== 'undefined') {
+                $('input:checkbox, input:radio').uniform();
+            }
+        });
+    }
+}
+
+$(document).ready(function() {
+    loadGlobalHeaderFooter();
+});
+
 function setupDynamicPortfolioNav() {
     // console.log("=== Debugging Portfolio Nav Setup ===");
 
