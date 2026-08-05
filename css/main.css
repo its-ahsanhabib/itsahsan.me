@@ -862,13 +862,24 @@ body {
    overrides the wide-screen icon-left/text-beside .fun-fact layout meant for the
    wider 4-column Fun Fact stats row, which is too cramped for these narrow columns) */
 .fun-fact.worked-at {
-	padding-right: 0; text-align: center;
+	padding-right: 0; text-align: center; display: block; text-decoration: none; color: inherit;
+	-webkit-transition: -webkit-transform .2s ease; transition: transform .2s ease;
 	}
+	a.fun-fact.worked-at:hover {
+		-webkit-transform: translateY(-3px); transform: translateY(-3px);
+		}
+	a.fun-fact.worked-at:hover h4 {
+		color: #8ACB82;
+		}
 	.fun-fact.worked-at i {
 		float: none; display: inline-block; margin-bottom: 12px; font-size: 38px;
 		}
+	.fun-fact.worked-at img.worked-at-logo {
+		float: none; display: block; max-width: 100%; max-height: 42px; width: auto; height: auto; margin: 0 auto 12px;
+		}
 	.fun-fact.worked-at h4 {
 		float: none; margin: 0 auto; max-width: 140px; padding-top: 0; font-size: 12px; text-align: center;
+		-webkit-transition: color .2s ease; transition: color .2s ease;
 		}
 
 /* CLIENT */
