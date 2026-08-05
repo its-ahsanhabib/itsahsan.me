@@ -929,6 +929,18 @@ body {
     .event p:last-child {
 		margin-bottom: 0;
 		}
+	.event ul {
+		list-style: none; margin: .6em 0 .2em 0; padding: 0;
+		}
+		.event li {
+			position: relative; padding-left: 1.1em; margin-bottom: .5em; font-size: 15px; line-height: 1.5;
+			}
+			.event li:before {
+				content: ""; position: absolute; top: .55em; left: 0; width: 5px; height: 5px; border-radius: 50%; background: #8ACB82;
+				}
+		.event li:last-child {
+			margin-bottom: 0;
+			}
 
 /* SKILLS */
 .skill-unit {
