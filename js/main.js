@@ -132,9 +132,13 @@ $(document).ajaxComplete(function (event, xhr, settings) {
 
 		// 2. CONTENT SECTIONS (#/about, #/resume, etc.)
 		// Get the active page section element
-		var $activePage = $('.pt-page-current');
+		var $activePage = $('.pt-page.page-current');
 		if (!$activePage.length) {
-			$activePage = $(currentHash);
+			// currentHash looks like "#/about" - build a valid ID selector ("#about")
+			var pageId = currentHash.replace('#/', '');
+			if (pageId) {
+				$activePage = $('#' + pageId);
+			}
 		}
 
 		var activeEl = $activePage[0];

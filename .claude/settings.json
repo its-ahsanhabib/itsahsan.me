@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(google-chrome --headless --disable-gpu --no-sandbox --window-size=1440,900 --virtual-time-budget=4000 --screenshot=home_scrolldown.png \"http://localhost:8795/index.html#/home\")",
+      "Bash(node test_final.mjs)",
+      "Bash(pkill -f \"http.server 87\")"
+    ]
+  }
+}
