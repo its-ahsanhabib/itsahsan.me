@@ -824,8 +824,8 @@ body {
 .process img { 
 	max-width: 60%; margin: 0;
 	}
-.process h4 { 
-	margin: 0; font-size: 10px;
+.process h4 {
+	margin: 0 0 10px 0; font-size: 10px;
 	}
 .row [class^="col-"]:nth-child(3n) .process:after { 
     display: none; 
@@ -844,8 +844,31 @@ body {
 	.fun-fact img { 
 		max-width: 54px; margin: 0; margin-bottom: 8px;
 		}
-	.fun-fact h4 { 
-		max-width: 140px; margin: 0 auto; font-size: 12px; line-height: 1.2; font-weight: 400; text-transform: uppercase; 
+	.fun-fact h4 {
+		max-width: 140px; margin: 0 auto; font-size: 12px; line-height: 1.2; font-weight: 400; text-transform: uppercase;
+		}
+
+/* WORKED AT ROW (flex, not the col-* grid - an odd item count like 5 would otherwise
+   leave a dangling empty slot on the last row; centering + wrapping avoids that at
+   any item count or screen width) */
+.worked-at-row {
+	display: flex; flex-wrap: wrap; justify-content: center;
+	}
+	.worked-at-item {
+		flex: 0 0 20%; max-width: 20%; min-width: 140px; box-sizing: border-box; padding: 0 15px;
+		}
+
+/* WORKED AT (reuses .fun-fact, but stays icon-over-text & centered at every width -
+   overrides the wide-screen icon-left/text-beside .fun-fact layout meant for the
+   wider 4-column Fun Fact stats row, which is too cramped for these narrow columns) */
+.fun-fact.worked-at {
+	padding-right: 0; text-align: center;
+	}
+	.fun-fact.worked-at i {
+		float: none; display: inline-block; margin-bottom: 12px; font-size: 38px;
+		}
+	.fun-fact.worked-at h4 {
+		float: none; margin: 0 auto; max-width: 140px; padding-top: 0; font-size: 12px; text-align: center;
 		}
 
 /* CLIENT */
