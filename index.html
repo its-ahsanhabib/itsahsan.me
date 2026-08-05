@@ -1201,6 +1201,18 @@
 
 <!-- PAGE : CONTACT -->
 <section id="contact" class="pt-page page-layout contact light-text">
+
+    <!-- BACKGROUND MAP (sibling of .content so it can size against the full section height) -->
+    <div class="map contact-map-container">
+        <div data-latitude="23.7449918"
+             data-longitude="90.3701279"
+             data-zoom="12"
+             data-style="style1"
+             data-marker-image="images/site/marker.png"
+             id="map-canvas"
+             class="map-canvas"></div>
+    </div>
+
     <div class="content">
         <div class="layout-medium">
 
@@ -1260,17 +1272,6 @@
 
             </div>
             <!-- .row -->
-
-            <!-- BACKGROUND MAP -->
-            <div class="map contact-map-container">
-                <div data-latitude="23.7449918" 
-                     data-longitude="90.3701279" 
-                     data-zoom="12"
-                     data-style="style1" 
-                     data-marker-image="images/site/marker.png" 
-                     id="map-canvas"
-                     class="map-canvas"></div>
-            </div>
 
         </div>
         <!-- .layout-medium -->
