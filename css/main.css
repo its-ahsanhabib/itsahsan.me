@@ -505,11 +505,28 @@ body {
 .is-menu-toggled-on .site-main { 
     overflow: hidden; max-height: 100%;
     }
-.csstransforms.is-menu-toggled-on body { 
+.csstransforms.is-menu-toggled-on body {
     left: 0;
-    -ms-transform: translate(120px,0px); 
-    -webkit-transform: translate(120px,0px); 
-    transform: translate(120px,0px); 
+    -ms-transform: translate(120px,0px);
+    -webkit-transform: translate(120px,0px);
+    transform: translate(120px,0px);
+	}
+
+/* MOBILE MENU (the 120px reveal is fine once there's a wide viewport behind it,
+   but on phones it just leaves a cramped, half-cut-off sliver of page content
+   sitting next to the nav - widen the reveal so it reads as a proper drawer) */
+@media screen and (max-width: 600px) {
+	.header-wrap {
+		width: 80%; left: -80%;
+		}
+	.is-menu-toggled-on body {
+		left: 80%;
+		}
+	.csstransforms.is-menu-toggled-on body {
+		-ms-transform: translate(80%,0px);
+		-webkit-transform: translate(80%,0px);
+		transform: translate(80%,0px);
+		}
 	}
 
 /* NAV MENU */
