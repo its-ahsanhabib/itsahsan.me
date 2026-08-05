@@ -109,10 +109,12 @@ $(document).ajaxComplete(function (event, xhr, settings) {
 	var sections = ['#/home', '#/about', '#/resume', '#/portfolio', '#/blog', '#/contact'];
 	var isTransitioning = false;
 
-	$(window).on('wheel deltaX deltaY', function (event) {
+	// Shared decision logic used by both mouse-wheel and touch-swipe input.
+	// delta > 0 means "scroll down / swipe up" intent, delta < 0 means the reverse -
+	// same sign convention as a wheel event's deltaY.
+	function evaluateScroll(delta, downThreshold, upThreshold) {
 		if (isTransitioning) return;
 
-		var delta = event.originalEvent.deltaY;
 		var currentHash = window.location.hash || '#/home';
 
 		if (currentHash.indexOf('?') !== -1) {
@@ -124,7 +126,7 @@ $(document).ajaxComplete(function (event, xhr, settings) {
 
 		// 1. HOME SECTION: Jump immediately on scroll down
 		if (currentHash === '#/home' || currentIndex === 0) {
-			if (delta > 20) {
+			if (delta > downThreshold) {
 				triggerTransition(sections[1]); // Move to #/about
 			}
 			return;
@@ -163,13 +165,43 @@ $(document).ajaxComplete(function (event, xhr, settings) {
 		var isAtTop = scrollTop <= 20;
 
 		// Scroll Down -> Jump to Next Section
-		if (delta > 25 && isAtBottom && currentIndex < sections.length - 1) {
+		if (delta > downThreshold && isAtBottom && currentIndex < sections.length - 1) {
 			triggerTransition(sections[currentIndex + 1]);
 		}
 		// Scroll Up -> Jump to Previous Section
-		else if (delta < -25 && isAtTop && currentIndex > 0) {
+		else if (delta < upThreshold && isAtTop && currentIndex > 0) {
 			triggerTransition(sections[currentIndex - 1]);
 		}
+	}
+
+	$(window).on('wheel deltaX deltaY', function (event) {
+		evaluateScroll(event.originalEvent.deltaY, 20, -25);
+	});
+
+	// TOUCH SWIPE: wheel events don't fire on touchscreens, so mirror the same
+	// edge-triggered section jump for a vertical swipe gesture.
+	var touchStartY = null;
+	var TOUCH_SWIPE_THRESHOLD = 40;
+
+	$(window).on('touchstart', function (event) {
+		var touch = event.originalEvent.touches && event.originalEvent.touches[0];
+		touchStartY = touch ? touch.clientY : null;
+	});
+
+	$(window).on('touchend', function (event) {
+		if (touchStartY === null) return;
+
+		var touch = event.originalEvent.changedTouches && event.originalEvent.changedTouches[0];
+		if (!touch) { touchStartY = null; return; }
+
+		// Swiping up (finger moves toward top) means "reveal more below", the
+		// same intent as a positive wheel deltaY.
+		var delta = touchStartY - touch.clientY;
+		touchStartY = null;
+
+		if (Math.abs(delta) < TOUCH_SWIPE_THRESHOLD) return;
+
+		evaluateScroll(delta, TOUCH_SWIPE_THRESHOLD - 1, -(TOUCH_SWIPE_THRESHOLD - 1));
 	});
 
 	function triggerTransition(targetHash) {
