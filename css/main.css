@@ -638,6 +638,9 @@ body {
 .home-section .button {
 	margin-top: 3em;
 	}
+.home-cta a.button {
+	margin-left: .6em; margin-right: .6em;
+	}
 
 /* SCROLL DOWN INDICATOR */
 .scroll-down-indicator {
