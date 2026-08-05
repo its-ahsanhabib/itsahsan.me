@@ -22,5 +22,117 @@
     "categories": ["Electronics", "iOT", "Power"],
     "image": "portfolio/images/ultrasonic power.jpg",
     "link": "portfolio-item-03.html"
+  },
+  {
+    "id": "portfolio-item-04",
+    "title": "Smart Cane",
+    "categoryText": "Ultrasonic-based smart cane that helps visually impaired users detect obstacles and navigate safely.",
+    "categories": ["Electronics", "Embeded_System", "Robotics_Mechatronics"],
+    "image": "portfolio/images/smartcane.JPG",
+    "link": "portfolio-item-04.html"
+  },
+  {
+    "id": "portfolio-item-05",
+    "title": "GPS Tracker",
+    "categoryText": "Low-cost vehicle GPS tracker that reports live location to a server.",
+    "categories": ["Electronics", "iOT", "Embeded_System"],
+    "image": "portfolio/images/gps tracker.JPG",
+    "link": "portfolio-item-05.html"
+  },
+  {
+    "id": "portfolio-item-06",
+    "title": "RFID Based Attendance System",
+    "categoryText": "Server-connected RFID attendance & access system for schools and offices.",
+    "categories": ["Electronics", "Embeded_System", "Automation"],
+    "image": "portfolio/images/rfid att.jpg",
+    "link": "portfolio-item-06.html"
+  },
+  {
+    "id": "portfolio-item-07",
+    "title": "Emergency Calling System",
+    "categoryText": "Embedded emergency alert / calling system project.",
+    "categories": ["Electronics", "Embeded_System", "Automation"],
+    "image": "portfolio/images/emergency button.jpg",
+    "link": "portfolio-item-07.html"
+  },
+  {
+    "id": "portfolio-item-08",
+    "title": "Voice Controlled Home Automation",
+    "categoryText": "Voice-controlled home automation exploring Google Assistant & smart home integration.",
+    "categories": ["Electronics", "iOT", "AI", "Automation"],
+    "image": "portfolio/images/home automation.jpg",
+    "link": "portfolio-item-08.html"
+  },
+  {
+    "id": "portfolio-item-09",
+    "title": "Indoor Blind Navigation",
+    "categoryText": "Wearable navigation aid to help visually impaired users move safely indoors.",
+    "categories": ["Electronics", "Embeded_System", "Robotics_Mechatronics"],
+    "image": "portfolio/images/Blind_pathfinder.JPG",
+    "link": "portfolio-item-09.html"
+  },
+  {
+    "id": "portfolio-item-10",
+    "title": "Power Meter",
+    "categoryText": "DC power meter for measuring real power delivered to a load.",
+    "categories": ["Electronics", "Power"],
+    "image": "portfolio/images/power meter.jpg",
+    "link": "portfolio-item-10.html"
+  },
+  {
+    "id": "portfolio-item-11",
+    "title": "Seminar at UIU (As an Instructor)",
+    "categoryText": "Guest instructor session on IoT at United International University (UIU).",
+    "categories": ["Thinking_Traveling"],
+    "image": "portfolio/images/seminar/1.jpg",
+    "link": "portfolio-item-11.html"
+  },
+  {
+    "id": "portfolio-item-12",
+    "title": "Seminar at AIUB (As an Instructor)",
+    "categoryText": "Guest instructor session on Raspberry Pi & embedded systems at AIUB.",
+    "categories": ["Thinking_Traveling"],
+    "image": "portfolio/images/seminar/4.jpg",
+    "link": "portfolio-item-12.html"
+  },
+  {
+    "id": "portfolio-item-13",
+    "title": "Fingerprint Lock and Attendance System",
+    "categoryText": "Biometric fingerprint-based door lock and attendance system with server sync.",
+    "categories": ["Electronics", "Embeded_System", "Automation"],
+    "image": "portfolio/images/finger.jpg",
+    "link": "portfolio-item-13.html"
+  },
+  {
+    "id": "portfolio-item-14",
+    "title": "University Final Year Thesis",
+    "categoryText": "Final year thesis on optimal MTU (Maximum Transmission Unit) sizing for network performance.",
+    "categories": ["Thinking_Traveling"],
+    "image": "portfolio/images/thesis2.jpg",
+    "link": "portfolio-item-14.html"
+  },
+  {
+    "id": "portfolio-item-15",
+    "title": "Digitalization of Analog Sweater Weaving Machine",
+    "categoryText": "PID-controlled motor automation for digitizing an analog sweater weaving machine.",
+    "categories": ["Electronics", "Robotics_Mechatronics", "Automation"],
+    "image": "portfolio/images/weaving.jpg",
+    "link": "portfolio-item-15.html"
+  },
+  {
+    "id": "portfolio-item-16",
+    "title": "Power Hackathon",
+    "categoryText": "Hackathon project addressing illegal power leakage/tapping detection.",
+    "categories": ["Electronics", "Power", "Automation"],
+    "image": "portfolio/images/power_hacathon.jpg",
+    "link": "portfolio-item-16.html"
+  },
+  {
+    "id": "portfolio-item-17",
+    "title": "Web Controlled RGB LED",
+    "categoryText": "Music-reactive, web-controlled RGB LED lighting project.",
+    "categories": ["Electronics", "iOT", "Embeded_System"],
+    "image": "portfolio/images/rgbled.png",
+    "link": "portfolio-item-17.html"
   }
 ]
